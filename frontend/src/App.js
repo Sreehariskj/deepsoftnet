@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Login from './screens/Login/Login';
 import DashBoard from './screens/DashBoard/DashBoard';
+import AddProduct from './screens/AddProduct/AddProduct';
 
 
 function App() {
@@ -9,7 +10,9 @@ function App() {
     <div>
       <Header />
       {/* <Login></Login> */}
-      <DashBoard></DashBoard>
+      {/* <DashBoard></DashBoard> */}
+      <AddProduct></AddProduct>
+
     </div>
     
   );
