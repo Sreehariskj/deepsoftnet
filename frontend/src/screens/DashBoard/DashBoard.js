@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 import "./DashBoard.css";
 
@@ -6,14 +7,21 @@ const data = [
   { product: "Product 2", price: 10 },
   { product: "Product 3", price: 20 },
 ];
-const latest = [
-  { product: "Product 1", price: 10 },
-  { product: "Product 2", price: 10 },
-  { product: "Product 3", price: 20 },
-  { product: "Product 4", price: 10 },
-];
 
 function DashBoard() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get("/api/products");
+
+      // console.log(data.items);
+
+      setProducts(data.items);
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <div className="d-container">
       <div className="d-box">
@@ -59,11 +67,11 @@ function DashBoard() {
       <div className="l-box">
         <h1>Latest</h1>
         <div className="l-cards">
-          {latest.map((val, key) => {
+          {products.map((product) => {
             return (
-              <div className="l-card" key={key}>
-                <p>{val.product}</p>
-                <p>$ {val.price}</p>
+              <div className="l-card" key={product._id}>
+                <p>{product.title}</p>
+                <p>{product.price} Rs</p>
               </div>
             );
           })}
