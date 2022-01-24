@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+ /* global value for input and select  */
+
+input:focus , select:focus{
+  outline: none;
+}
