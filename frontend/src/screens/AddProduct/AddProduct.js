@@ -1,5 +1,6 @@
 import React from "react";
-import "./AddProduct.css";
+// import "./AddProduct.css";
+import "../common.css"
 
 function AddProduct() {
   return (
