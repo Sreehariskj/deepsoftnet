@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./DashBoard.css";
 
 const data = [
@@ -22,11 +22,15 @@ function DashBoard() {
     fetchProducts();
   }, []);
 
+  const history = useNavigate();
+
   return (
     <div className="d-container">
       <div className="d-box">
         <h1>Dash Board</h1>
-        <button className="addBtn">Add product</button>
+        <button className="addBtn" onClick={() => history("/addproduct")}>
+          Add product
+        </button>
         <div className="row">
           <input className="searchInput" placeholder="search"></input>
           <select name="category" id="category">
