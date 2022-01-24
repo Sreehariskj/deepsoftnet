@@ -18,13 +18,13 @@
 }
 
 
-.inputField, .selectField {
+.card .inputField,.card .selectField {
     width:40%;
     height: 25px;
     margin:5px 0;
     padding-left: 3px;
 }
-.button {
+.card .button {
     width:25%;
     height: 30px;
     margin-top: 5px;
