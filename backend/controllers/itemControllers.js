@@ -26,4 +26,16 @@ const addItem = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { addItem };
+// @get all items
+const getItem = asyncHandler(async (req, res) => {
+  try {
+    const items = await Item.find({});
+
+    res.json({ items });
+  } catch (error) {
+    console.log(error, "product controller get item error");
+    res.status(500);
+    throw new Error("Try again later");
+  }
+});
+module.exports = { addItem, getItem };
