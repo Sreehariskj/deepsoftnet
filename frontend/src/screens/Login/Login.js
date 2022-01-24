@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import '../common.css'
 import axios from 'axios'
-
+import { Navigate, useNavigate } from 'react-router-dom';
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
 
+    const navigate = useNavigate()
+
     const submitHandler = async (e) =>{
         e.preventDefault()
         // console.log(email,password)
+        navigate('/')
 
         try {
             const config = {
