@@ -18,7 +18,7 @@ function DashBoard() {
     <div className="d-container">
       <div className="d-box">
         <h1>Dash Board</h1>
-        <button className="addBtn">Add product</button>     
+        <button className="addBtn">Add product</button>
         <div className="row">
           <input className="searchInput" placeholder="search"></input>
           <select name="category" id="category">
@@ -59,13 +59,13 @@ function DashBoard() {
       <div className="l-box">
         <h1>Latest</h1>
         <div className="l-cards">
-          {latest.map((val,key) =>{
-            return(
+          {latest.map((val, key) => {
+            return (
               <div className="l-card" key={key}>
                 <p>{val.product}</p>
                 <p>$ {val.price}</p>
               </div>
-            )
+            );
           })}
         </div>
       </div>
