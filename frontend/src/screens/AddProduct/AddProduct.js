@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import "./AddProduct.css";
 import "../common.css";
 
@@ -9,6 +10,8 @@ function AddProduct() {
   const [quantity, setQuantity] = useState();
   const [category, setCategory] = useState("");
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -31,7 +34,10 @@ function AddProduct() {
         config
       );
 
-      console.log(product);
+      // console.log(product);
+
+      // @redirect to dashboard
+      navigate("/");
     } catch (error) {
       setError(error.response.data.message);
     }
