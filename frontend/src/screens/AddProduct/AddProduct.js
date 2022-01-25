@@ -23,7 +23,7 @@ function AddProduct() {
           "Content-type": "application/json",
         },
       };
-      const { product } = await axios.post(
+       await axios.post(
         "/api/products",
         {
           title,
@@ -48,6 +48,7 @@ function AddProduct() {
       <form onSubmit={submitHandler} action="">
         <div className="card">
           <h1>Add Product</h1>
+          {error && <h4>{error} !</h4>}
           <input
             type="text"
             className="inputField"
