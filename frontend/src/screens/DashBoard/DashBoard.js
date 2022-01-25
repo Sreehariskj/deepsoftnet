@@ -11,7 +11,21 @@ const data = [
 function DashBoard() {
   const [products, setProducts] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    const checkUser = () => {
+      // @get user data
+      const userInfo = localStorage.getItem("userInfo");
+      console.log(userInfo);
+
+      // @check is user loggedin
+      if (!userInfo) {
+        navigate("/login");
+      }
+    };
+    checkUser();
+
     const fetchProducts = async () => {
       const { data } = await axios.get("/api/products");
 
@@ -20,9 +34,7 @@ function DashBoard() {
       setProducts(data.items);
     };
     fetchProducts();
-  }, []);
-
-  const navigate = useNavigate();
+  }, [navigate]);
 
   return (
     <div className="d-container">
