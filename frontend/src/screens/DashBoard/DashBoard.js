@@ -22,13 +22,13 @@ function DashBoard() {
     fetchProducts();
   }, []);
 
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="d-container">
       <div className="d-box">
         <h1>Dash Board</h1>
-        <button className="addBtn" onClick={() => history("/addproduct")}>
+        <button className="addBtn" onClick={() => navigate("/addproduct")}>
           Add product
         </button>
         <div className="row">
