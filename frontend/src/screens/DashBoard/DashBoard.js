@@ -3,13 +3,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./DashBoard.css";
 
-const data = [
-  { product: "Product 2", price: 10 },
-  { product: "Product 3", price: 20 },
-];
-
 function DashBoard() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState(null);
+  const [filter, setFilter] = useState([]);
 
   const navigate = useNavigate();
 
@@ -36,6 +34,26 @@ function DashBoard() {
     fetchProducts();
   }, [navigate]);
 
+  const filterProducts = () => {
+    let filteredProduct;
+
+    // @filter search from product
+    filteredProduct = products.filter((product) =>
+      product.title.toLowerCase().includes(search)
+    );
+    // console.log("first filter:",filteredProduct);
+
+    if (category !== null) {
+      // @filter category from filteredProduct
+      filteredProduct = filteredProduct.filter(
+        (product) => product.category === category
+      );
+    }
+    // console.log('second filter:',filteredProduct)
+    setFilter(filteredProduct);
+    // console.log(filter);
+  };
+
   return (
     <div className="d-container">
       <div className="d-box">
@@ -44,41 +62,56 @@ function DashBoard() {
           Add product
         </button>
         <div className="row">
-          <input className="searchInput" placeholder="search"></input>
-          <select name="category" id="category">
+          <input
+            className="searchInput"
+            placeholder="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          ></input>
+          <select
+            name="category"
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option value="" disabled selected hidden>
               Category
             </option>
             <option value="grocery">Grocery</option>
             <option value="fruit">Fruit</option>
           </select>
-          <button className="searchBtn">search</button>
+          <button className="searchBtn" onClick={filterProducts}>
+            search
+          </button>
         </div>
 
-        <table>
-          <tr>
-            <th class="table-head">
-              <input type="checkbox" id="select_all_checkboxes" />
-            </th>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-          {data.map((val, key) => {
-            return (
-              <tr key={key}>
-                <td class="table-head">
-                  <input type="checkbox" id={key} />
-                </td>
-                <td>{val.product}</td>
-                <td>$ {val.price}</td>
-                <td>edit</td>
-                <td>delete</td>
-              </tr>
-            );
-          })}
-        </table>
+        {filter.length !== 0 && (
+          <table>
+            <tr>
+              <th class="table-head">
+                <input type="checkbox" id="select_all_checkboxes" />
+              </th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+
+            {filter.map((val, key) => {
+              return (
+                <tr key={key}>
+                  <td class="table-head">
+                    <input type="checkbox" id={key} />
+                  </td>
+                  <td>{val.title}</td>
+                  <td>$ {val.price}</td>
+                  <td>edit</td>
+                  <td>delete</td>
+                </tr>
+              );
+            })}
+          </table>
+        )}
       </div>
       <div className="l-box">
         <h1>Latest</h1>
