@@ -100,7 +100,7 @@ function DashBoard() {
             {filter.map((val, key) => {
               return (
                 <tr key={key}>
-                  <td class="table-head">
+                  <td className="table-head">
                     <input type="checkbox" id={key} />
                   </td>
                   <td>{val.title}</td>
